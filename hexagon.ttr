@@ -1,0 +1,40 @@
+acquire graphics
+acquire math
+
+root3over2 = (3 ** 0.5) / 2
+
+drawDenerosHexagon: d, k, 32
+    return if k is 0 otherwise undefined
+
+    // Draws a single hexagon:
+    repeat 6, 2
+        forward(d)
+        leftTurn(pi / 3)
+    drawDenerosHexagon(d / 2, k - 1)
+    
+    // Move left:
+    fly()
+    leftTurn(pi / 2)
+    forward(root3over2 * d)
+    rightTurn(pi / 2)
+    land()
+    drawDenerosHexagon(d / 2, k - 1)
+     
+    // Move right:
+    fly()
+    rightTurn(pi / 6)
+    forward(root3over2 * d)
+    leftTurn(pi / 6)
+    land()
+    drawDenerosHexagon(d / 2, k - 1)
+    
+    // Move right again:
+    fly()
+    rightTurn((5 * pi) / 6)
+    forward(root3over2 * d)
+    leftTurn((5 * pi) / 6)
+    land()
+    drawDenerosHexagon(d / 2, k - 1)
+    return
+
+drawDenerosHexagon(16, 6)
